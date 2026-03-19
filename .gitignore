@@ -1,7 +1,7 @@
 # dependencies
 node_modules/
 
-# env files (VERY IMPORTANT - never push secrets)
+
 .env
 .env.*
 
