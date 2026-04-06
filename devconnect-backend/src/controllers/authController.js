@@ -20,7 +20,7 @@ export const signup= async (req,res)=>{
             email,
             password:hashedPassword
         });
-        const token =generateToken(user._id);
+        const token = generateToken(user);
         res.status(201).json({
             message:"user Registered Successfully",
             user,
@@ -50,7 +50,7 @@ export const login=async (req,res)=>{
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    const token =generateToken(user._id);
+    const token = generateToken(user);
 
      res.status(200).json({
       message: "Login successful",
