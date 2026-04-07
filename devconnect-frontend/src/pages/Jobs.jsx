@@ -119,6 +119,7 @@ export default function Jobs() {
 
             <div className="flex gap-2">
               
+              {role!== "admin" &&(
               <button
                 onClick={() => handleApply(job._id)}
                 disabled={appliedJobs.includes(job._id)}
@@ -130,6 +131,7 @@ export default function Jobs() {
               >
                 {appliedJobs.includes(job._id) ? "Applied" : "Apply Now"}
               </button>
+              )}
 
               <button
                 onClick={() => navigate(`/jobs/${job._id}`)}
