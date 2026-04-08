@@ -9,6 +9,8 @@ import JobDetails from "./pages/JobDetails";
 import Applicants from "./pages/Applicants";
 import AdminRoute from "./components/AdminRoute";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/create-job" element={<AdminRoute><CreateJob /></AdminRoute>} />
         <Route path="/jobs/:id" element={<JobDetails/>} />
         <Route path="/jobs/:id/applicants" element={<Applicants/>} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/edit-profile" element={<EditProfile/>} />
       </Routes>
     </BrowserRouter>
   );

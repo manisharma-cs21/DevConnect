@@ -7,6 +7,7 @@ import protect from "./src/middlewares/authMiddleware.js";
 import authorizeRoles from "./src/middlewares/roleMiddleware.js";
 import jobRoutes from "./src/routes/jobRoutes.js"
 import applicationRoutes from "./src/routes/applicationRoutes.js"
+import userRoutes from "./src/routes/userRoutes.js";
 
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use("/api/auth",authRoutes);
 app.use("/api/jobs",jobRoutes);
 app.use("/api/applications",applicationRoutes);
+app.use("/api/users", userRoutes);
 
 const PORT =process.env.PORT ||5000;
 

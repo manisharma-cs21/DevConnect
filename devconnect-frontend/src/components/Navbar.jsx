@@ -19,7 +19,6 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-md">
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        
         {/* Logo */}
         <h1
           onClick={() => navigate("/")}
@@ -30,26 +29,25 @@ export default function Navbar() {
 
         {/* Links */}
         <div className="flex items-center gap-6 text-gray-700 font-medium">
-          
           <Link to="/" className="hover:text-blue-600 transition">
             Jobs
           </Link>
 
-          {token && (
-            <Link
-              to="/dashboard"
-              className="hover:text-blue-600 transition"
-            >
+          {token &&(
+            <Link to="/dashboard" className="hover:text-blue-600 transition">
               Dashboard
+            </Link>
+            
+          )}
+          {token && (
+            <Link to="/profile" className="hover:text-blue-600 transition">
+              Profile
             </Link>
           )}
 
           {/* ADMIN ONLY */}
           {role === "admin" && (
-            <Link
-              to="/create-job"
-              className="hover:text-blue-600 transition"
-            >
+            <Link to="/create-job" className="hover:text-blue-600 transition">
               Create Job
             </Link>
           )}
@@ -63,10 +61,7 @@ export default function Navbar() {
             </button>
           ) : (
             <>
-              <Link
-                to="/login"
-                className="hover:text-blue-600 transition"
-              >
+              <Link to="/login" className="hover:text-blue-600 transition">
                 Login
               </Link>
 
