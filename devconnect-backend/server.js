@@ -8,6 +8,8 @@ import authorizeRoles from "./src/middlewares/roleMiddleware.js";
 import jobRoutes from "./src/routes/jobRoutes.js"
 import applicationRoutes from "./src/routes/applicationRoutes.js"
 import userRoutes from "./src/routes/userRoutes.js";
+import referralRoutes from "./src/routes/referralRoutes.js"
+import notificationRoutes from "./src/routes/notificationRoutes.js";
 
 
 dotenv.config();
@@ -22,6 +24,8 @@ app.use("/api/auth",authRoutes);
 app.use("/api/jobs",jobRoutes);
 app.use("/api/applications",applicationRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/referrals", referralRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 const PORT =process.env.PORT ||5000;
 

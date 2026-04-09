@@ -6,6 +6,7 @@ export default function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [message, setMessage] = useState("");
   const [appliedJobs, setAppliedJobs] = useState([]);
+  const [referrals, setReferrals] = useState({});
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
@@ -13,19 +14,20 @@ export default function Jobs() {
   let role = null;
 
   if (token) {
-       const payload = JSON.parse(atob(token.split(".")[1]));
-       role = payload.role;
-  } 
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    role = payload.role;
+  }
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      const res = await api.get("/jobs");
-      setJobs(res.data);
-    };
-
     fetchJobs();
     fetchAppliedJobs();
+    fetchReferrals();
   }, []);
+
+  const fetchJobs = async () => {
+    const res = await api.get("/jobs");
+    setJobs(res.data);
+  };
 
   const handleApply = async (jobId) => {
     if (!token) {
@@ -54,6 +56,60 @@ export default function Jobs() {
     } catch (error) {
       setMessage(
         error.response?.data?.message || "Already applied"
+      );
+    }
+  };
+
+  // fetch referrals
+  const fetchReferrals = async () => {
+    if (!token) return;
+
+    try {
+      const res = await api.get("/referrals/my", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const map = {};
+
+      res.data.forEach((r) => {
+        map[r.job] = r.status;
+      });
+
+      setReferrals(map);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // request referral (FIXED)
+  const handleReferral = async (jobId) => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    try {
+      await api.post(
+        "/referrals/request",
+        { jobId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setReferrals({
+        ...referrals,
+        [jobId]: "pending",
+      });
+
+    } catch (error) {
+      alert(
+        error.response?.data?.message || "Already requested"
       );
     }
   };
@@ -117,36 +173,73 @@ export default function Jobs() {
               {job.description}
             </p>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               
-              {role!== "admin" &&(
-              <button
-                onClick={() => handleApply(job._id)}
-                disabled={appliedJobs.includes(job._id)}
-                className={`w-full py-2 rounded-lg transition ${
-                  appliedJobs.includes(job._id)
-                    ? "bg-green-500 text-white cursor-not-allowed"
-                    : "bg-blue-600 hover:bg-blue-700 text-white"
-                }`}
-              >
-                {appliedJobs.includes(job._id) ? "Applied" : "Apply Now"}
-              </button>
+              {/* APPLY */}
+              {role !== "admin" && (
+                <button
+                  onClick={() => handleApply(job._id)}
+                  disabled={appliedJobs.includes(job._id)}
+                  className={`w-full py-2 rounded-lg ${
+                    appliedJobs.includes(job._id)
+                      ? "bg-green-500 text-white"
+                      : "bg-blue-600 hover:bg-blue-700 text-white"
+                  }`}
+                >
+                  {appliedJobs.includes(job._id)
+                    ? "Applied"
+                    : "Apply Now"}
+                </button>
               )}
 
+              {/* DETAILS */}
               <button
                 onClick={() => navigate(`/jobs/${job._id}`)}
                 className="w-full border border-blue-600 text-blue-600 py-2 rounded-lg hover:bg-blue-50"
               >
                 Details
               </button>
+
+              {/* REFERRAL STATUS */}
+              {role !== "admin" && referrals[job._id] === "pending" && (
+                <button className="w-full bg-yellow-500 text-white py-2 rounded-lg">
+                  Pending
+                </button>
+              )}
+
+              {role !== "admin" && referrals[job._id] === "accepted" && (
+                <button className="w-full bg-green-600 text-white py-2 rounded-lg">
+                  Referred
+                </button>
+              )}
+
+              {role !== "admin" && referrals[job._id] === "rejected" && (
+                <button className="w-full bg-red-500 text-white py-2 rounded-lg">
+                  Rejected
+                </button>
+              )}
+
+              {/* REQUEST REFERRAL */}
+              {role !== "admin" && !referrals[job._id] && (
+                <button
+                  onClick={() => handleReferral(job._id)}
+                  className="w-full border border-purple-600 text-purple-600 py-2 rounded-lg hover:bg-purple-50"
+                >
+                  Request Referral
+                </button>
+              )}
+
+              {/* ADMIN */}
               {role === "admin" && (
                 <button
-                onClick={() => navigate(`/jobs/${job._id}/applicants`)}
-                className="w-full border border-green-600 text-green-600 py-2 rounded-lg"
-                 >
+                  onClick={() =>
+                    navigate(`/jobs/${job._id}/applicants`)
+                  }
+                  className="w-full border border-green-600 text-green-600 py-2 rounded-lg"
+                >
                   Applicants
-                  </button>
-                )}
+                </button>
+              )}
 
             </div>
 

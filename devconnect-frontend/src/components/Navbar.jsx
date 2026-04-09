@@ -33,23 +33,28 @@ export default function Navbar() {
             Jobs
           </Link>
 
-          {token &&(
+          {token && role!=="admin" &&(
             <Link to="/dashboard" className="hover:text-blue-600 transition">
               Dashboard
             </Link>
-            
           )}
           {token && (
             <Link to="/profile" className="hover:text-blue-600 transition">
               Profile
             </Link>
           )}
+         
 
           {/* ADMIN ONLY */}
           {role === "admin" && (
             <Link to="/create-job" className="hover:text-blue-600 transition">
               Create Job
             </Link>
+          )}
+          {role === "admin" && <Link to="/referrals">Referrals</Link>}
+
+           {token &&(
+            <Link to="/notifications">🔔</Link>
           )}
 
           {token ? (
@@ -71,6 +76,7 @@ export default function Navbar() {
               >
                 Signup
               </Link>
+              
             </>
           )}
         </div>
