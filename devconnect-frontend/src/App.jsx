@@ -13,6 +13,7 @@ import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import Referrals from "./pages/Referrals";
 import Notifications from "./pages/Notifications";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/edit-profile" element={<EditProfile/>} />
         <Route path="/referrals" element={<AdminRoute><Referrals/></AdminRoute>} />
         <Route path="/notifications" element={<Notifications/>} />
+        <Route path="/user/:id" element={<UserProfile />} />
       </Routes>
     </BrowserRouter>
   );

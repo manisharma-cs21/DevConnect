@@ -1,8 +1,56 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import api from "../services/api";
+import socket from "../socket";
+
 
 export default function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const [count, setCount] = useState(0);
+
+  // for unread cunt
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
+
+  const fetchNotifications = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    const res = await api.get("/notifications", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const unread = res.data.filter((n) => !n.read).length;
+    setCount(unread);
+  };
+
+  // for live notification count update
+  useEffect(() => {
+    socket.on("notification", () => {
+      toast.success(data.message);
+      setCount((prev) => prev + 1); // 🔥 increment
+    });
+
+    return () => {
+      socket.off("notification");
+    };
+  }, []);
+
+  // for real-time notifications
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const userId = payload.id;
+
+      socket.emit("join", userId);
+    }
+  }, []);
 
   // decode role from token
   let role = null;
@@ -33,7 +81,7 @@ export default function Navbar() {
             Jobs
           </Link>
 
-          {token && role!=="admin" &&(
+          {token && role !== "admin" && (
             <Link to="/dashboard" className="hover:text-blue-600 transition">
               Dashboard
             </Link>
@@ -43,7 +91,6 @@ export default function Navbar() {
               Profile
             </Link>
           )}
-         
 
           {/* ADMIN ONLY */}
           {role === "admin" && (
@@ -53,8 +100,15 @@ export default function Navbar() {
           )}
           {role === "admin" && <Link to="/referrals">Referrals</Link>}
 
-           {token &&(
-            <Link to="/notifications">🔔</Link>
+          {token && (
+            <Link to="/notifications" className="relative">
+              🔔
+              {count > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+                  {count}
+                </span>
+              )}
+            </Link>
           )}
 
           {token ? (
@@ -76,7 +130,6 @@ export default function Navbar() {
               >
                 Signup
               </Link>
-              
             </>
           )}
         </div>
