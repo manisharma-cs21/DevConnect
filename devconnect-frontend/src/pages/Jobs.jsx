@@ -74,7 +74,7 @@ export default function Jobs() {
       const map = {};
 
       res.data.forEach((r) => {
-        map[r.job] = r.status;
+        map[r.job._id] = r.status;
       });
 
       setReferrals(map);
