@@ -14,6 +14,7 @@ import EditProfile from "./pages/EditProfile";
 import Referrals from "./pages/Referrals";
 import Notifications from "./pages/Notifications";
 import UserProfile from "./pages/UserProfile";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Jobs />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/jobs" element={<Jobs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />

@@ -26,7 +26,7 @@ export default function CreateJob() {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       setMessage("Job created successfully");
@@ -34,69 +34,72 @@ export default function CreateJob() {
       setTimeout(() => {
         navigate("/");
       }, 1500);
-
     } catch (error) {
-      setMessage(
-        error.response?.data?.message || "Failed to create job"
-      );
+      setMessage(error.response?.data?.message || "Failed to create job");
     }
 
     setLoading(false);
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100">
-      
-      <form
-        onSubmit={handleCreate}
-        className="bg-white p-8 rounded-xl shadow-md w-[500px]"
-      >
-        <h2 className="text-2xl font-bold mb-6">
-          Create Job
-        </h2>
-
-        {message && (
-          <p className="mb-4 text-blue-600">
-            {message}
-          </p>
-        )}
-
-        <input
-          type="text"
-          placeholder="Job Title"
-          className="w-full border p-2 mb-4 rounded"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-
-        <input
-          type="text"
-          placeholder="Company"
-          className="w-full border p-2 mb-4 rounded"
-          onChange={(e) => setCompany(e.target.value)}
-        />
-
-        <input
-          type="text"
-          placeholder="Location"
-          className="w-full border p-2 mb-4 rounded"
-          onChange={(e) => setLocation(e.target.value)}
-        />
-
-        <textarea
-          placeholder="Job Description"
-          className="w-full border p-2 mb-4 rounded"
-          rows="4"
-          onChange={(e) => setDescription(e.target.value)}
-        />
-
+    <div className="min-h-screen flex items-center justify-center px-4 py-10 text-white">
+      <div className="w-full max-w-lg bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] p-8">
+        {/* Back */}
         <button
-          disabled={loading}
-          className="w-full bg-blue-600 text-white py-2 rounded"
+          onClick={() => navigate(-1)}
+          className="mb-4 text-gray-300 hover:text-white"
         >
-          {loading ? "Creating..." : "Create Job"}
+          ← Back
         </button>
-      </form>
 
+        {/* Title */}
+        <h2 className="text-2xl font-bold mb-2 text-center">Create Job 🚀</h2>
+
+        <p className="text-gray-400 text-center mb-6 text-sm">
+          Post a new opportunity for candidates
+        </p>
+
+        {/* Message */}
+        {message && <p className="mb-4 text-center text-blue-400">{message}</p>}
+
+        {/* Form */}
+        <form onSubmit={handleCreate} className="space-y-4">
+          <input
+            type="text"
+            placeholder="Job Title"
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+
+          <input
+            type="text"
+            placeholder="Company"
+            onChange={(e) => setCompany(e.target.value)}
+            className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+
+          <input
+            type="text"
+            placeholder="Location"
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+
+          <textarea
+            placeholder="Job Description"
+            rows="4"
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+
+          <button
+            disabled={loading}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition disabled:bg-gray-500"
+          >
+            {loading ? "Creating..." : "Create Job"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

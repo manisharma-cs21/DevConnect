@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+body {
+  /* background: url("\public\pexels-apple-1853259.jpg"); */
+   background: linear-gradient(135deg, #0f172a, #1e293b);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75); /* increase */
+  z-index: -1;
+}

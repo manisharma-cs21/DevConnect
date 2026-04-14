@@ -29,31 +29,48 @@ export default function UserProfile() {
   if (!user) return <div>Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-start py-10 px-4">
-      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-8 border">
+  <div className="min-h-screen text-white px-4 py-10">
+
+    <div className="max-w-4xl mx-auto">
+
+      {/* Back */}
+      <button
+        onClick={() => window.history.back()}
+        className="mb-6 text-gray-300 hover:text-white"
+      >
+        ← Back
+      </button>
+
+      {/* CARD */}
+      <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] p-8">
+
         {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-800">{user.name}</h1>
-            <p className="text-gray-500">{user.email}</p>
-          </div>
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold">
+            {user.name}
+          </h1>
+          <p className="text-gray-400">
+            {user.email}
+          </p>
         </div>
 
-        {/* Info Grid */}
-        <div className="grid grid-cols-2 gap-6 mb-6">
-          <div>
+        {/* Info */}
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+
+          <div className="bg-white/5 p-4 rounded-xl border border-white/10">
             <p className="text-gray-400 text-sm">Experience</p>
-            <p className="font-medium text-lg">
+            <p className="font-medium">
               {user.experience || "Not added"}
             </p>
           </div>
 
-          <div>
+          <div className="bg-white/5 p-4 rounded-xl border border-white/10">
             <p className="text-gray-400 text-sm">Location</p>
-            <p className="font-medium text-lg">
+            <p className="font-medium">
               {user.location || "Not added"}
             </p>
           </div>
+
         </div>
 
         {/* Skills */}
@@ -64,7 +81,7 @@ export default function UserProfile() {
             {user.skills?.map((skill, index) => (
               <span
                 key={index}
-                className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium"
+                className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-medium"
               >
                 {skill}
               </span>
@@ -73,7 +90,8 @@ export default function UserProfile() {
         </div>
 
         {/* Buttons */}
-        <div className="flex gap-4">
+        <div className="flex gap-3 flex-wrap">
+
           {user.resume && (
             <a
               href={user.resume}
@@ -88,13 +106,16 @@ export default function UserProfile() {
             <a
               href={`https://github.com/${user.github}`}
               target="_blank"
-              className="border border-black px-5 py-2 rounded-lg hover:bg-black hover:text-white transition"
+              className="border border-white/30 px-5 py-2 rounded-lg hover:bg-white/10 transition"
             >
               GitHub
             </a>
           )}
+
         </div>
+
       </div>
     </div>
-  );
+  </div>
+);
 }

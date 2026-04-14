@@ -28,89 +28,92 @@ export default function Referrals() {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
 
     fetchReferrals();
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      
-      <h1 className="text-2xl font-bold mb-6">
-        Referral Requests
-      </h1>
+    <div className="min-h-screen text-white px-4 py-8">
+      <div className="max-w-5xl mx-auto">
+        {/* Back */}
+        <button
+          onClick={() => window.history.back()}
+          className="mb-6 text-gray-300 hover:text-white"
+        >
+          ← Back
+        </button>
 
-      <div className="space-y-4">
-        
-        {referrals.map((ref) => (
-          <div
-            key={ref._id}
-            className="bg-white p-5 rounded-xl shadow border hover:shadow-md transition"
-          >
-            <div className="flex justify-between items-center">
-              
-              <div>
-                <h2 className="font-semibold text-lg">
-                  {ref.user.name}
-                </h2>
+        {/* Title */}
+        <h1 className="text-3xl font-bold mb-6">Referral Requests 🔥</h1>
 
-                <p className="text-gray-600">
-                  {ref.job?.title} - {ref.job?.company}
-                </p>
+        {/* List */}
+        <div className="space-y-4">
+          {referrals.map((ref) => (
+            <div
+              key={ref._id}
+              className="bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-xl shadow-lg hover:scale-[1.01] transition"
+            >
+              <div className="flex justify-between items-center">
+                {/* User Info */}
+                <div>
+                  <h2 className="font-semibold text-lg">{ref.user.name}</h2>
+
+                  <p className="text-gray-400 text-sm">
+                    {ref.job?.title} - {ref.job?.company}
+                  </p>
+                </div>
+
+                {/* STATUS BADGE */}
+                {ref.status === "pending" && (
+                  <span className="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-sm">
+                    Pending
+                  </span>
+                )}
+
+                {ref.status === "accepted" && (
+                  <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">
+                    Accepted
+                  </span>
+                )}
+
+                {ref.status === "rejected" && (
+                  <span className="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-sm">
+                    Rejected
+                  </span>
+                )}
               </div>
 
-              {/* STATUS BADGE */}
+              {/* ACTIONS */}
               {ref.status === "pending" && (
-                <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
-                  Pending
-                </span>
-              )}
+                <div className="flex gap-3 mt-4">
+                  <button
+                    onClick={() => updateStatus(ref._id, "accepted")}
+                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition"
+                  >
+                    Accept
+                  </button>
 
-              {ref.status === "accepted" && (
-                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-                  Accepted
-                </span>
+                  <button
+                    onClick={() => updateStatus(ref._id, "rejected")}
+                    className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition"
+                  >
+                    Reject
+                  </button>
+                </div>
               )}
-
-              {ref.status === "rejected" && (
-                <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm">
-                  Rejected
-                </span>
-              )}
-
             </div>
+          ))}
+        </div>
 
-            {/* ACTION BUTTONS */}
-            {ref.status === "pending" && (
-              <div className="flex gap-2 mt-4">
-                
-                <button
-                  onClick={() =>
-                    updateStatus(ref._id, "accepted")
-                  }
-                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg"
-                >
-                  Accept
-                </button>
-
-                <button
-                  onClick={() =>
-                    updateStatus(ref._id, "rejected")
-                  }
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg"
-                >
-                  Reject
-                </button>
-
-              </div>
-            )}
-
+        {/* Empty */}
+        {referrals.length === 0 && (
+          <div className="text-center text-gray-400 mt-10">
+            No referral requests
           </div>
-        ))}
-
+        )}
       </div>
-
     </div>
   );
 }

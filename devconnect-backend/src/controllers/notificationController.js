@@ -1,16 +1,21 @@
 import Notification from "../models/notificationModel.js";
 
+// GET ALL NOTIFICATIONS
 export const getNotifications = async (req, res) => {
-  const notifications = await Notification.find({
-    user: req.user._id,
-  }).sort({ createdAt: -1 });
+  try {
+    const notifications = await Notification.find({
+      user: req.user._id,
+    }).sort({ createdAt: -1 });
 
-  res.json(notifications);
+    res.json(notifications);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 
-// for mark as read 
-
+// MARK ALL AS READ
 export const markAsRead = async (req, res) => {
   try {
     await Notification.updateMany(
@@ -22,5 +27,21 @@ export const markAsRead = async (req, res) => {
 
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+
+// 🔥 CREATE NOTIFICATION (REUSABLE FUNCTION)
+export const createNotification = async (userId, message) => {
+  try {
+    const notification = await Notification.create({
+      user: userId,
+      message,
+    });
+
+    return notification;
+
+  } catch (error) {
+    console.log("Notification Error:", error.message);
   }
 };

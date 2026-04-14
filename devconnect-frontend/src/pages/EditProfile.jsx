@@ -63,6 +63,8 @@ export default function EditProfile() {
   };
 
   return (
+    <div className="min-h-screen bg-black/30 backdrop-blur-sm py-8">
+      <div className="max-w-7xl mx-auto px-4"></div>
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
       
       <form
@@ -127,6 +129,7 @@ export default function EditProfile() {
 
       </form>
 
+    </div>
     </div>
   );
 }

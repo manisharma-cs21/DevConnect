@@ -33,11 +33,10 @@ export default function JobDetails() {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       alert("Applied successfully");
-
     } catch (error) {
       alert("Already applied");
     }
@@ -46,24 +45,47 @@ export default function JobDetails() {
   if (!job) return <div className="p-8">Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow">
-
-        <h1 className="text-2xl font-bold">{job.title}</h1>
-
-        <p className="text-blue-600 mt-2">{job.company}</p>
-
-        <p className="text-gray-500 mt-1">📍 {job.location}</p>
-
-        <p className="mt-6 text-gray-700">{job.description}</p>
-
+    <div className="min-h-screen text-white px-4 py-8">
+      <div className="max-w-4xl mx-auto">
+        {/* Back */}
         <button
-          onClick={handleApply}
-          className="mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg"
+          onClick={() => navigate(-1)}
+          className="mb-6 text-gray-300 hover:text-white"
         >
-          Apply Now
+          ← Back
         </button>
 
+        {/* CARD */}
+        <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+          {/* Header */}
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold">{job.title}</h1>
+
+            <p className="text-blue-400 mt-2 font-medium">{job.company}</p>
+
+            <p className="text-gray-400 text-sm mt-1">📍 {job.location}</p>
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-white/20 my-6"></div>
+
+          {/* Description */}
+          <div>
+            <h2 className="text-lg font-semibold mb-2">Job Description</h2>
+
+            <p className="text-gray-300 leading-relaxed">{job.description}</p>
+          </div>
+
+          {/* Apply Button */}
+          <div className="mt-8">
+            <button
+              onClick={handleApply}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition shadow-lg"
+            >
+              Apply Now 🚀
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import http from "http"; // 🔥 important
-import { Server } from "socket.io"; // 🔥 important
+import http from "http";
+import { Server } from "socket.io";
 
 import { connectDB } from "./src/config/db.js";
 import authRoutes from "./src/routes/AuthRoutes.js";
@@ -19,7 +19,7 @@ connectDB();
 
 const app = express();
 
-// 🔥 create server
+// 🔥 create HTTP server
 const server = http.createServer(app);
 
 // 🔥 socket setup
@@ -29,14 +29,13 @@ const io = new Server(server, {
   },
 });
 
-// 🔥 make global
-global.io = io;
+// ✅ EXPORT IO (IMPORTANT)
+export { io };
 
 // 🔥 socket connection
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
-  // join user room
   socket.on("join", (userId) => {
     socket.join(userId);
     console.log("User joined room:", userId);
@@ -72,7 +71,7 @@ app.get("/api/admin", protect, authorizeRoles("admin"), (req, res) => {
   res.json({ message: "Welcome Admin 🔥" });
 });
 
-// 🔥 IMPORTANT: use server.listen not app.listen
+// 🔥 IMPORTANT
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
