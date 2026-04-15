@@ -55,7 +55,7 @@ export default function Notifications() {
         }
       );
 
-      // 🔥 update UI instantly
+      //  update UI instantly
       setNotifications((prev) =>
         prev.map((n) => ({ ...n, read: true }))
       );

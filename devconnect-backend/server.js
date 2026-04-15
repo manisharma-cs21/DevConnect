@@ -19,22 +19,19 @@ connectDB();
 
 const app = express();
 
-// 🔥 create HTTP server
+
 const server = http.createServer(app);
 
-// 🔥 socket setup
 const io = new Server(server, {
   cors: {
     origin: "*",
   },
 });
 
-// ✅ EXPORT IO (IMPORTANT)
 export { io };
 
-// 🔥 socket connection
 io.on("connection", (socket) => {
-  console.log("User connected:", socket.id);
+  //console.log("User connected:", socket.id);
 
   socket.on("join", (userId) => {
     socket.join(userId);
@@ -71,7 +68,7 @@ app.get("/api/admin", protect, authorizeRoles("admin"), (req, res) => {
   res.json({ message: "Welcome Admin 🔥" });
 });
 
-// 🔥 IMPORTANT
+
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

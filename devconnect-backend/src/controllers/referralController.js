@@ -1,6 +1,6 @@
 import Referral from "../models/referralModel.js";
 import Notification from "../models/notificationModel.js";
-import { io } from "../../server.js"; // adjust path
+import { io } from "../../server.js"; 
 
 // REQUEST REFERRAL
 export const requestReferral = async (req, res) => {

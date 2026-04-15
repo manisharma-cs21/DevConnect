@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import generateToken from "../utils/generateToken.js";
 import validator from "validator";
 
-// SIGNUP
+
 export const signup = async (req, res) => {
   try {
     let { name, email, password } = req.body;
