@@ -5,34 +5,35 @@ export default function Home() {
   const token = localStorage.getItem("token");
 
   return (
-    <div className="min-h-screen text-white flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen text-white px-4">
 
-      {/* HERO */}
-      <div className="text-center max-w-3xl">
+      {/* HERO SECTION */}
+      <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto pt-20">
 
-        <h1 className="text-5xl font-bold leading-tight">
+        <h1 className="text-5xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
           Connect. Apply. Get Referred 🚀
         </h1>
 
-        <p className="text-gray-300 mt-4 text-lg">
-          DevConnect helps you discover jobs, apply easily, and get referrals from professionals.
+        <p className="text-gray-300 mt-6 text-lg max-w-2xl">
+          DevConnect helps developers discover opportunities, apply seamlessly, 
+          and get referrals to boost their chances of getting hired.
         </p>
 
-        {/* CTA BUTTONS */}
-        <div className="mt-8 flex justify-center gap-4 flex-wrap">
+        {/* CTA */}
+        <div className="mt-10 flex gap-4 flex-wrap justify-center">
 
           {!token ? (
             <>
               <button
                 onClick={() => navigate("/login")}
-                className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl text-white font-medium transition shadow-lg"
+                className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-xl font-medium transition shadow-lg hover:scale-105"
               >
                 Get Started
               </button>
 
               <button
                 onClick={() => navigate("/signup")}
-                className="border border-white/30 px-6 py-3 rounded-xl hover:bg-white/10 transition"
+                className="border border-white/20 px-8 py-3 rounded-xl hover:bg-white/10 transition hover:scale-105"
               >
                 Create Account
               </button>
@@ -40,42 +41,77 @@ export default function Home() {
           ) : (
             <button
               onClick={() => navigate("/jobs")}
-              className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl text-white font-medium transition shadow-lg"
+              className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-xl font-medium transition shadow-lg hover:scale-105"
             >
               Explore Jobs
             </button>
           )}
 
         </div>
-
       </div>
 
       {/* FEATURES */}
-      <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-5xl w-full">
+      <div className="max-w-6xl mx-auto mt-20 grid md:grid-cols-3 gap-8">
 
-        <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-xl text-center">
-          <h3 className="text-xl font-semibold mb-2">💼 Jobs</h3>
+        <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-6 rounded-2xl text-center hover:scale-105 transition shadow-lg">
+          <div className="text-3xl mb-3">💼</div>
+          <h3 className="text-xl font-semibold mb-2">Job Discovery</h3>
           <p className="text-gray-300 text-sm">
-            Browse jobs from top companies and apply instantly.
+            Explore curated opportunities from top companies across tech.
           </p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-xl text-center">
-          <h3 className="text-xl font-semibold mb-2">🤝 Referrals</h3>
+        <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-6 rounded-2xl text-center hover:scale-105 transition shadow-lg">
+          <div className="text-3xl mb-3">🤝</div>
+          <h3 className="text-xl font-semibold mb-2">Referral System</h3>
           <p className="text-gray-300 text-sm">
-            Request referrals and boost your chances of getting hired.
+            Request referrals and increase your chances of getting shortlisted.
           </p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-xl text-center">
-          <h3 className="text-xl font-semibold mb-2">🔔 Notifications</h3>
+        <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-6 rounded-2xl text-center hover:scale-105 transition shadow-lg">
+          <div className="text-3xl mb-3">🔔</div>
+          <h3 className="text-xl font-semibold mb-2">Real-time Updates</h3>
           <p className="text-gray-300 text-sm">
-            Get real-time updates on your applications and referrals.
+            Stay updated with instant notifications on your applications.
           </p>
         </div>
 
       </div>
 
+      {/* ABOUT SECTION */}
+      <div className="max-w-4xl mx-auto mt-24 text-center">
+
+        <h2 className="text-3xl font-bold mb-4">
+          What is DevConnect?
+        </h2>
+
+        <p className="text-gray-300 leading-relaxed">
+          DevConnect is a platform built for developers to simplify job searching and referrals.
+          Instead of applying blindly, you can connect, request referrals, and track everything 
+          in one place — making your job hunt smarter and faster.
+        </p>
+
+      </div>
+
+      {/* FINAL CTA */}
+      {!token && (
+        <div className="mt-20 text-center">
+          <h2 className="text-2xl font-semibold mb-4">
+            Ready to get started?
+          </h2>
+
+          <button
+            onClick={() => navigate("/signup")}
+            className="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-xl font-medium transition shadow-lg hover:scale-105"
+          >
+            Join DevConnect 🚀
+          </button>
+        </div>
+      )}
+
+      {/* SPACING */}
+      <div className="h-20"></div>
     </div>
   );
 }

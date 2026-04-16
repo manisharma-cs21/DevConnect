@@ -43,7 +43,9 @@ io.on("connection", (socket) => {
   });
 });
 
-app.use(cors());
+app.use(cors(
+  
+));
 app.use(express.json());
 
 // routes
