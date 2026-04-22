@@ -15,6 +15,7 @@ import referralRoutes from "./src/routes/referralRoutes.js";
 import notificationRoutes from "./src/routes/notificationRoutes.js";
 
 dotenv.config();
+
 connectDB();
 
 const app = express();
@@ -35,11 +36,11 @@ io.on("connection", (socket) => {
 
   socket.on("join", (userId) => {
     socket.join(userId);
-    console.log("User joined room:", userId);
+    
   });
 
   socket.on("disconnect", () => {
-    console.log("User disconnected:", socket.id);
+    
   });
 });
 
