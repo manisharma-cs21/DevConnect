@@ -9,6 +9,12 @@ export default function JobDetails() {
   const [job, setJob] = useState(null);
   const token = localStorage.getItem("token");
 
+  let roll = null;
+  if (token) {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    roll = payload.role;
+  }
+
   useEffect(() => {
     const fetchJob = async () => {
       const res = await api.get("/jobs");
@@ -78,12 +84,14 @@ export default function JobDetails() {
 
           {/* Apply Button */}
           <div className="mt-8">
-            <button
-              onClick={handleApply}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition shadow-lg"
-            >
-              Apply Now 🚀
-            </button>
+            {roll !== "admin" && (
+              <button
+                onClick={handleApply}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition shadow-lg"
+              >
+                Apply Now 🚀
+              </button>
+            )}
           </div>
         </div>
       </div>

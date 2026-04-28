@@ -12,8 +12,13 @@ const applicationSchema = new mongoose.Schema(
       ref: "Job",
       required: true,
     },
+    status: {
+      type: String,
+      enum: ["pending", "shortlisted", "rejected"],
+      default: "pending",
+    },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model("Application", applicationSchema);
