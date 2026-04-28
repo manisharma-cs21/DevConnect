@@ -6,7 +6,7 @@ const generateToken=(userId)=>{
          role:userId.role,
         },
         process.env.JWT_SECRET,
-        {expiresIn:"7d"})
+        {expiresIn:"1d"})
 }
 
 export default generateToken;
