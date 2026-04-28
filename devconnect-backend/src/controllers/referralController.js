@@ -58,7 +58,7 @@ export const updateReferral = async (req, res) => {
       return res.status(404).json({ message: "Referral not found" });
     }
 
-    // 🔥 prevent duplicate update
+    //  prevent duplicate update
     if (referral.status === status) {
       return res.json(referral);
     }
@@ -76,7 +76,7 @@ export const updateReferral = async (req, res) => {
       message,
     });
 
-    // 🔥 real-time emit
+    //  real-time emit
     io.to(referral.user.toString()).emit("notification", notification);
 
     res.json(referral);

@@ -31,7 +31,7 @@ export const markAsRead = async (req, res) => {
 };
 
 
-// 🔥 CREATE NOTIFICATION (REUSABLE FUNCTION)
+// CREATE NOTIFICATION (REUSABLE FUNCTION)
 export const createNotification = async (userId, message) => {
   try {
     const notification = await Notification.create({
