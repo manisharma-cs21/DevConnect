@@ -11,7 +11,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto pt-20">
 
         <h1 className="text-5xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-          Connect. Apply. Get Referred 🚀
+          Connect. Apply. Get Referred 
         </h1>
 
         <p className="text-gray-300 mt-6 text-lg max-w-2xl">
@@ -105,7 +105,7 @@ export default function Home() {
             onClick={() => navigate("/signup")}
             className="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-xl font-medium transition shadow-lg hover:scale-105"
           >
-            Join DevConnect 🚀
+            Join DevConnect 
           </button>
         </div>
       )}

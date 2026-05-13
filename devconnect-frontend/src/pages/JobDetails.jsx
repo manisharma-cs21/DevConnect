@@ -79,7 +79,10 @@ export default function JobDetails() {
           <div>
             <h2 className="text-lg font-semibold mb-2">Job Description</h2>
 
-            <p className="text-gray-300 leading-relaxed">{job.description}</p>
+            <div
+              className="text-gray-300 leading-relaxed space-y-2"
+              dangerouslySetInnerHTML={{ __html: job.description }}
+            />
           </div>
 
           {/* Apply Button */}

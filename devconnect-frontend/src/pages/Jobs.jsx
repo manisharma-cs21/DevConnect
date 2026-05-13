@@ -151,13 +151,13 @@ export default function Jobs() {
 
       {/* HERO */}
       <div className="max-w-7xl mx-auto px-4 text-center mb-10">
-        <h1 className="text-4xl font-bold">Find Your Dream Job 🚀</h1>
+        <h1 className="text-4xl font-bold">Find Your Dream Job </h1>
         <p className="text-gray-300 mt-2">
           Explore opportunities from top companies
         </p>
       </div>
 
-      {/* 🔥 SEARCH + FILTER */}
+      {/*  SEARCH + FILTER */}
       <div className="max-w-7xl mx-auto px-4 mb-6">
         <div className="flex flex-col md:flex-row gap-4">
           {/* Search */}
