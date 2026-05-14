@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import socket from "../socket";
 import { toast } from "react-toastify";
+import logo from "../assets/logo.png";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -71,20 +72,24 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-lg">
-
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-
         {/* Logo */}
-        <h1
+        {/* <h1
           onClick={() => navigate("/")}
           className="text-xl font-bold text-white cursor-pointer tracking-wide"
         >
           DevConnect
-        </h1>
+        </h1> */}
+
+
+          <img
+            src={logo}
+            alt="DevConnect"
+            className="h-12 w-auto object-contain"
+          />
 
         {/* Links */}
         <div className="flex items-center gap-6 text-gray-300 font-medium">
-
           <Link to="/" className="hover:text-white transition">
             Home
           </Link>
@@ -155,7 +160,6 @@ export default function Navbar() {
               </Link>
             </>
           )}
-
         </div>
       </div>
     </nav>
