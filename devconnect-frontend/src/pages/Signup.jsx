@@ -90,7 +90,7 @@ export default function Signup() {
 
         {/* Title */}
         <h2 className="text-2xl font-bold text-white text-center mb-2">
-          Create Account 🚀
+          Create Account 
         </h2>
 
         <p className="text-gray-300 text-center mb-6 text-sm">

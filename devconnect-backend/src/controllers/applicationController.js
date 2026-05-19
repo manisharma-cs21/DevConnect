@@ -57,7 +57,6 @@ export const getJobApplicants = async (req, res) => {
         "user",
         "name email skills experience resume github"
       );
-
     res.status(200).json(applications);
 
   } catch (error) {

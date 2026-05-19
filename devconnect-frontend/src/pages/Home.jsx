@@ -5,24 +5,28 @@ export default function Home() {
   const token = localStorage.getItem("token");
 
   return (
-    <div className="min-h-screen text-white px-4">
+    <div className="min-h-screen bg-black text-white px-4 overflow-hidden">
 
       {/* HERO SECTION */}
-      <div className="flex flex-col items-center justify-center text-center max-w-5xl mx-auto pt-24">
+      <div className="flex flex-col items-center justify-center text-center max-w-5xl mx-auto pt-28">
 
-        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight">
-          <span className="bg-linear-to-r from-blue-400 via-cyan-300 to-purple-500 bg-clip-text text-transparent">
+        <h1 className="text-5xl md:text-7xl font-black leading-tight tracking-tight">
+
+          <span className="text-white">
             Connect.
           </span>{" "}
-          <span className="text-white">
+
+          <span className="bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
             Apply.
           </span>{" "}
-          <span className="bg-linear-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-            Get Referred
+
+          <span className="text-white">
+            Get Referred.
           </span>
+
         </h1>
 
-        <p className="text-gray-300 mt-8 text-lg md:text-xl max-w-3xl leading-relaxed">
+        <p className="text-gray-400 mt-8 text-lg md:text-xl max-w-3xl leading-relaxed">
           DevConnect helps developers discover opportunities, apply seamlessly,
           and get referrals to boost their chances of getting hired.
         </p>
@@ -34,14 +38,14 @@ export default function Home() {
             <>
               <button
                 onClick={() => navigate("/login")}
-                className="bg-linear-to-r from-blue-600 to-purple-600 px-8 py-3 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:scale-105 hover:shadow-blue-500/30"
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/20"
               >
                 Get Started
               </button>
 
               <button
                 onClick={() => navigate("/signup")}
-                className="border border-white/10 bg-white/5 backdrop-blur-md px-8 py-3 rounded-2xl hover:bg-white/10 transition-all duration-300 hover:scale-105"
+                className="border border-white/10 bg-white/5 px-8 py-3 rounded-xl hover:bg-white/10 transition-all duration-300"
               >
                 Create Account
               </button>
@@ -49,7 +53,7 @@ export default function Home() {
           ) : (
             <button
               onClick={() => navigate("/jobs")}
-              className="bg-linear-to-r from-blue-600 to-purple-600 px-8 py-3 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:scale-105 hover:shadow-blue-500/30"
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg shadow-blue-500/20"
             >
               Explore Jobs
             </button>
@@ -59,9 +63,9 @@ export default function Home() {
       </div>
 
       {/* FEATURES */}
-      <div className="max-w-6xl mx-auto mt-24 grid md:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto mt-28 grid md:grid-cols-3 gap-8">
 
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl text-center hover:scale-105 transition-all duration-300 shadow-xl hover:border-blue-500/30">
+        <div className="bg-[#0f1117] border border-white/5 p-8 rounded-3xl text-center transition-all duration-300 hover:-translate-y-2 hover:border-blue-500/20">
 
           <div className="text-4xl mb-5">💼</div>
 
@@ -69,13 +73,13 @@ export default function Home() {
             Job Discovery
           </h3>
 
-          <p className="text-gray-300 leading-relaxed">
+          <p className="text-gray-400 leading-relaxed">
             Explore curated opportunities from top companies across tech.
           </p>
 
         </div>
 
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl text-center hover:scale-105 transition-all duration-300 shadow-xl hover:border-purple-500/30">
+        <div className="bg-[#0f1117] border border-white/5 p-8 rounded-3xl text-center transition-all duration-300 hover:-translate-y-2 hover:border-indigo-500/20">
 
           <div className="text-4xl mb-5">🤝</div>
 
@@ -83,13 +87,13 @@ export default function Home() {
             Referral System
           </h3>
 
-          <p className="text-gray-300 leading-relaxed">
+          <p className="text-gray-400 leading-relaxed">
             Request referrals and increase your chances of getting shortlisted.
           </p>
 
         </div>
 
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-3xl text-center hover:scale-105 transition-all duration-300 shadow-xl hover:border-cyan-500/30">
+        <div className="bg-[#0f1117] border border-white/5 p-8 rounded-3xl text-center transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500/20">
 
           <div className="text-4xl mb-5">🔔</div>
 
@@ -97,7 +101,7 @@ export default function Home() {
             Real-time Updates
           </h3>
 
-          <p className="text-gray-300 leading-relaxed">
+          <p className="text-gray-400 leading-relaxed">
             Stay updated with instant notifications on your applications.
           </p>
 
@@ -106,13 +110,13 @@ export default function Home() {
       </div>
 
       {/* ABOUT SECTION */}
-      <div className="max-w-5xl mx-auto mt-28 text-center">
+      <div className="max-w-5xl mx-auto mt-32 text-center">
 
-        <h2 className="text-4xl font-extrabold mb-6 bg-linear-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+        <h2 className="text-4xl font-black mb-6 text-white">
           What is DevConnect?
         </h2>
 
-        <p className="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto">
+        <p className="text-gray-400 leading-relaxed text-lg max-w-3xl mx-auto">
           DevConnect is a platform built for developers to simplify job searching and referrals.
           Instead of applying blindly, you can connect, request referrals, and track everything
           in one place — making your job hunt smarter and faster.
@@ -130,7 +134,7 @@ export default function Home() {
 
           <button
             onClick={() => navigate("/signup")}
-            className="bg-linear-to-r from-blue-600 to-purple-600 px-10 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:scale-105 hover:shadow-purple-500/30"
+            className="bg-gradient-to-r from-blue-600 to-indigo-600 px-10 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg shadow-indigo-500/20"
           >
             Join DevConnect
           </button>
@@ -138,7 +142,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* SPACING */}
       <div className="h-24"></div>
 
     </div>
